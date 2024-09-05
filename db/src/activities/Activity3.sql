@@ -4,7 +4,7 @@
 
 UPDATE "11435202_1"."HANA_TRAINING.data::TB_SKILLSET"
 SET PROFLEVEL = 'P1'
-where SAPNO = '1002' and SKILLID = '2' ;
+where SAPNO = '10002' and SKILLID = '2' ;
 
 --Modify the column value of SKILLNAME to Functional Testing where the SKILLID is 2
 
