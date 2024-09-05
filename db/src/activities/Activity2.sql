@@ -1,4 +1,4 @@
---Activity 2 : Rename Table | Pending Alter Activity
+--Activity 2 : Rename Table SQL | Pending Alter Activity
 
 RENAME TABLE "11435202_1"."HANA_TRAINING.data::EMPLOYEE" TO "TB_EMPLOYEE";
 RENAME TABLE "11435202_1"."HANA_TRAINING.data::SKILLSET" TO "TB_SKILLSET";

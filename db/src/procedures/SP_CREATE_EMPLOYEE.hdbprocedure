@@ -1,0 +1,47 @@
+PROCEDURE "HANA_TRAINING.procedures::SP_CREATE_EMPLOYEE"(
+    IN ip_row TABLE (SAPNO INTEGER ,
+    EMPEID NVARCHAR(50),
+    FIRSTNAME NVARCHAR(100),
+    LASTNAME NVARCHAR(100),
+    BIRTHDATE DATE,
+    AGE INTEGER,
+    HIREDATE DATE,
+    DELETEFLAG NVARCHAR(1)),
+    
+    OUT op_message NVARCHAR(3000)
+)
+   LANGUAGE SQLSCRIPT
+   SQL SECURITY INVOKER
+   --DEFAULT SCHEMA <default_schema_name>
+   --READS SQL DATA AS
+AS BEGIN
+   
+-- Insert data from ip_row into EMPLOYEE table
+   
+   INSERT INTO "HANA_TRAINING.data::EMPLOYEE"
+   (
+       "SAPNO",
+      "EMPEID",
+      "FIRSTNAME",
+      "LASTNAME",
+      "BIRTHDATE",
+      "AGE",
+      "HIREDATE",
+      "DELETEFLAG"
+   )
+   SELECT  
+       "SAPNO",
+      "EMPEID",
+      "FIRSTNAME",
+      "LASTNAME",
+      "BIRTHDATE",
+      "AGE",
+      "HIREDATE",
+      "DELETEFLAG"
+   FROM :ip_row;
+
+-- Set success message
+   
+   op_message = 'Data successfully created!';
+  
+END

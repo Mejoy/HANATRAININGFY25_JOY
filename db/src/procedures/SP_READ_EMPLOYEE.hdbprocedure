@@ -1,0 +1,16 @@
+PROCEDURE "HANA_TRAINING.procedures::SP_READ_EMPLOYEE"(
+   IN ip_sapno Integer,
+   OUT op_table "HANA_TRAINING.data::EMPLOYEE"
+)
+   LANGUAGE SQLSCRIPT
+   SQL SECURITY INVOKER
+   --DEFAULT SCHEMA <default_schema_name>
+   --READS SQL DATA AS
+AS BEGIN
+
+   -- Read table from EMPLOYEE table
+
+   op_table = SELECT * FROM "HANA_TRAINING.data::EMPLOYEE"
+   WHERE "SAPNO" = :ip_sapno;
+  
+END

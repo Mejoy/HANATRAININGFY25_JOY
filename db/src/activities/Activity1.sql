@@ -1,4 +1,4 @@
--- Activity 1 : Create Table
+-- Activity 1 : Create Table via runtime
 
 CREATE COLUMN TABLE "11435202_1"."HANA_TRAINING.data::USERNAME"(
 	"USERNUM" INTEGER,

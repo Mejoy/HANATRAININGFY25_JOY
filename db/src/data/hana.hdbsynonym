@@ -1,0 +1,23 @@
+{
+  "HANA_TRAINING.data::DUMMY": {
+    "target": {
+      "object": "DUMMY",
+      "schema": "SYS"
+    }
+  },
+  "HANA_TRAINING.data::EMPLOYEE": {
+    "target": {
+      "object": "HANA_TRAINING.data::TB_EMLOYEE"
+    }
+  },
+  "HANA_TRAINING.data::SKILLSET": {
+    "target": {
+      "object": "HANA_TRAINING.data::TB_SKILLSET"
+    }
+  },
+  "HANA_TRAINING.data::EMPSEQ": {
+    "target": {
+      "object": "HANA_TRAINING.data::sequence"
+    }
+  }
+}

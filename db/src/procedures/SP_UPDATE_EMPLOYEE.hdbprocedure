@@ -1,0 +1,35 @@
+PROCEDURE "HANA_TRAINING.procedures::SP_UPDATE_EMPLOYEE"(
+   IN ip_row TABLE (SAPNO INTEGER ,
+   EMPEID NVARCHAR(50),
+   FIRSTNAME NVARCHAR(100),
+   LASTNAME NVARCHAR(100),
+   BIRTHDATE DATE,
+   AGE INTEGER,
+   HIREDATE DATE,
+   DELETEFLAG NVARCHAR(1)),
+
+   OUT op_message NVARCHAR(3000)
+)
+   LANGUAGE SQLSCRIPT
+   SQL SECURITY INVOKER
+   --DEFAULT SCHEMA <default_schema_name>
+   --READS SQL DATA AS
+AS BEGIN
+   
+   -- Update data from ip_row into EMPLOYEE table
+
+   MERGE INTO "HANA_TRAINING.data::EMPLOYEE" t1 USING :ip_row t2 ON t1.SAPNO = t2.SAPNO
+   WHEN MATCHED THEN 
+   UPDATE SET 
+   t1.EMPEID = t2.EMPEID,
+   t1.FIRSTNAME = t2.FIRSTNAME,
+   t1.LASTNAME = t2.LASTNAME,
+   t1.BIRTHDATE = t2.BIRTHDATE,
+   t1.AGE = t2.AGE,
+   t1.HIREDATE = t2.HIREDATE ;
+
+   -- Set success message
+
+   op_message := 'Data successfully updated!';
+  
+END

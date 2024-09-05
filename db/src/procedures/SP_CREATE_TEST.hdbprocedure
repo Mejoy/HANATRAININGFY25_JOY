@@ -1,0 +1,32 @@
+PROCEDURE "HANA_TRAINING.procedures::SP_CREATE_TEST"(
+    IN ip_row "HANA_TRAINING.data::EMPLOYEE",
+    OUT result_message NVARCHAR(1000)
+)
+   LANGUAGE SQLSCRIPT
+   SQL SECURITY INVOKER
+   --DEFAULT SCHEMA <default_schema_name>
+   --READS SQL DATA AS
+AS BEGIN
+
+   DECLARE  lv_sapno Integer;
+   DECLARE  lv_empeid Nvarchar(50);
+   DECLARE  lv_firstname Nvarchar(100);
+   DECLARE  lv_lastname Nvarchar(100);
+   DECLARE  lv_birthday date;
+   DECLARE  lv_age Integer;
+   DECLARE  lv_hiredate date;
+   DECLARE  lv_deleteflag Nvarchar(1);
+   
+   --Select data from ip_row into EMPLOYEE table
+   
+   SELECT  "SAPNO", "EMPEID", "FIRSTNAME", "LASTNAME", "BIRTHDATE", "AGE", "HIREDATE", "DELETEFLAG" into lv_sapno, lv_empeid, lv_firstname,lv_lastname, lv_birthday, lv_age, lv_hiredate, lv_deleteflag from :ip_row;
+   
+   -- Insert data from ip_row into EMPLOYEE table
+   
+      Insert into "HANA_TRAINING.data::EMPLOYEE"
+      values (lv_sapno, lv_empeid, lv_firstname,lv_lastname, lv_birthday, lv_age, lv_hiredate, null);
+   
+   -- Set success message
+   result_message := 'Dath successfully inserted.';
+
+END

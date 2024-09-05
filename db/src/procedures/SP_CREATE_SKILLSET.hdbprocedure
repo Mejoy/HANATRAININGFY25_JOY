@@ -1,0 +1,41 @@
+PROCEDURE "HANA_TRAINING.procedures::SP_CREATE_SKILLSET"(
+   IN ip_row TABLE (SAPNO INTEGER ,
+   SKILLID INTEGER,
+   PROFLEVEL NVARCHAR(2),
+   DATESTART NVARCHAR(500),
+   DATEEND NVARCHAR(500),
+   DELETEFLAG NVARCHAR(1)),
+   
+   OUT op_message NVARCHAR(3000)
+)
+   LANGUAGE SQLSCRIPT
+   SQL SECURITY INVOKER
+   --DEFAULT SCHEMA <default_schema_name>
+   --READS SQL DATA AS
+AS BEGIN
+   
+-- Insert data from ip_row into SKILLSET table
+   
+   INSERT INTO "HANA_TRAINING.data::SKILLSET"
+   (
+      "SAPNO",
+      "SKILLID",
+      "PROFLEVEL",
+      "DATESTART",
+      "DATEEND",
+      "DELETEFLAG"
+   )
+   SELECT  
+      "SAPNO",
+      "SKILLID",
+      "PROFLEVEL",
+      "DATESTART",
+      "DATEEND",
+      "DELETEFLAG"
+   FROM :ip_row;
+
+-- Set success message
+   
+   op_message = 'Data successfully created!';
+  
+END
