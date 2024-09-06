@@ -19,5 +19,25 @@
     "target": {
       "object": "HANA_TRAINING.data::sequence"
     }
+  },
+  "HANA_TRAINING.data::SKILLINFO": {
+    "target": {
+      "object": "HANA_TRAINING.data::TB_SKILL_INFO"
+    }
+  },
+  "HANA_TRAINING.data::PROJECT": {
+    "target": {
+      "object": "HANA_TRAINING.data::TB_PROJECT"
+    }
+  },
+  "HANA_TRAINING.data::MANAGER": {
+    "target": {
+      "object": "HANA_TRAINING.data::TB_MANAGER"
+    }
+  },
+  "HANA_TRAINING.data::PROJECTID_INFO": {
+    "target": {
+      "object": "HANA_TRAINING.data::TB_PROJECTID_INFO"
+    }
   }
 }

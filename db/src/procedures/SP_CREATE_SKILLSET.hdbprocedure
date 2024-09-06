@@ -14,6 +14,13 @@ PROCEDURE "HANA_TRAINING.procedures::SP_CREATE_SKILLSET"(
    --READS SQL DATA AS
 AS BEGIN
    
+      DECLARE EXIT HANDLER FOR SQLEXCEPTION
+      BEGIN
+      SELECT 'SQL Exception occurred. Error code is: ' || ::SQL_ERROR_CODE || 'Error message is: ' || ::SQL_ERROR_MESSAGE
+      INTO op_message
+      FROM "HANA_TRAINING.data::DUMMY";
+      END; 
+
 -- Insert data from ip_row into SKILLSET table
    
    INSERT INTO "HANA_TRAINING.data::SKILLSET"
@@ -29,8 +36,8 @@ AS BEGIN
       "SAPNO",
       "SKILLID",
       "PROFLEVEL",
-      "DATESTART",
-      "DATEEND",
+      TO_DATE(DATESTART,'YYYY/MM/DD') AS DATESTART,
+      TO_DATE(DATEEND,'YYYY/MM/DD') AS DATEEND,
       "DELETEFLAG"
    FROM :ip_row;
 

@@ -141,6 +141,9 @@
 		},
 		"hdbeshconfig": {
             "plugin_name": "com.sap.hana.di.eshconfig"
-        }
+        },
+		"sql": {
+			"plugin_name": "com.sap.hana.di.copyonly"
+		}
 	}
 }
